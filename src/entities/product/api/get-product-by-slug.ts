@@ -6,6 +6,7 @@ export async function getProductBySlug(slug: string) {
     .from("products")
     .select("*")
     .eq("slug", slug)
+    .eq("is_active", true)
     .maybeSingle();
   if (error) {
     console.error("Ошибка при запросе к БД по slug", error.message);

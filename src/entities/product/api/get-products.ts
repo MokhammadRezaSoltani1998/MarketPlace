@@ -1,8 +1,13 @@
 import { createClient } from "@/shared/api/supabase/server";
 import type { Product, ProductFilters } from "../model/types";
 
+interface ProductQueryOptions {
+  inStockOnly?: boolean;
+}
+
 export async function getProducts(
   filters: ProductFilters = {},
+  options: ProductQueryOptions = {},
 ): Promise<Product[]> {
   const supabase = await createClient();
   const categorySelect = filters.category
@@ -12,6 +17,9 @@ export async function getProducts(
     .from("products")
     .select(`*, ${categorySelect}`)
     .eq("is_active", true);
+  if (options.inStockOnly) {
+    query = query.gt("stock_quantity", 0);
+  }
   if (filters.search) {
     query = query.ilike("title", `%${filters.search}%`);
   }

@@ -30,6 +30,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <span className="text-xl font-bold text-gray-900">
             {product.price.toLocaleString("ru-RU")} ₽
           </span>
+          <p
+            className={`mt-1 text-sm font-medium ${product.stock_quantity > 0 ? "text-emerald-700" : "text-red-600"}`}
+          >
+            {product.stock_quantity > 0 ? "В наличии" : "Нет в наличии"}
+          </p>
         </div>
         <Link
           href={`/product/${product.slug}`}

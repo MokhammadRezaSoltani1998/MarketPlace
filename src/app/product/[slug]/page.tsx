@@ -28,6 +28,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="text-2xl font-bold text-emerald-600">
           {product.price} ₽
         </div>
+        <p
+          className={`mt-4 font-medium ${product.stock_quantity > 0 ? "text-emerald-700" : "text-red-600"}`}
+        >
+          {product.stock_quantity > 0 ? "В наличии" : "Нет в наличии"}
+        </p>
       </div>
     </main>
   );

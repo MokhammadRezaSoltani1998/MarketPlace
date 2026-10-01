@@ -63,7 +63,6 @@ describe("registerSchema", () => {
     const result = registerSchema.safeParse(invalidData);
     expect(result.success).toBe(false);
     if (!result.success) {
-      console.log(result.error.issues[0]);
       expect(result.error.issues[0].path[0]).toBe("confirmPassword");
     }
   });
