@@ -1,4 +1,5 @@
 import { getProducts, ProductCard } from "@/entities/product";
+import AddToCartButton from "@/features/cart/ui/add-to-cart-button";
 import { createClient } from "@/shared/api/supabase/server";
 
 interface CatalogPageProps {
@@ -35,7 +36,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} action={<AddToCartButton productId={product.id} stock={product.stock_quantity} />} />
           ))}
         </div>
       )}

@@ -6,6 +6,7 @@ export default async function Header() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const { data: profile } = user ? await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle() : { data: null };
   return (
     <header className="w-full bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-10 py-4 flex justify-between items-center">
@@ -15,6 +16,7 @@ export default async function Header() {
         >
           Логотип тут
         </Link>
+        <nav className="flex flex-wrap gap-4 text-sm"><Link href="/catalog">Каталог</Link><Link href="/cart">Корзина</Link>{user && <Link href="/orders">Заказы</Link>}{(profile?.role === "ADMIN" || profile?.role === "SELLER") && <Link href="/dashboard">Управление</Link>}</nav>
         {user ? (
           <div className="flex items-center gap-4">
             <span>{user.email}</span>

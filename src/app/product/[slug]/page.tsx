@@ -2,6 +2,7 @@ import { getProductBySlug } from "@/entities/product";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ProductImage from "@/entities/product/ui/product-image";
+import AddToCartButton from "@/features/cart/ui/add-to-cart-button";
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -35,6 +36,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         >
           {product.stock_quantity > 0 ? "В наличии" : "Нет в наличии"}
         </p>
+        <div className="mt-6"><AddToCartButton productId={product.id} stock={product.stock_quantity} /></div>
       </div>
     </main>
   );

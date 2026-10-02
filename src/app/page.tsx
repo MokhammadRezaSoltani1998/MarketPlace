@@ -1,5 +1,6 @@
 import { ProductCard } from "@/entities/product";
 import { getProducts } from "@/entities/product";
+import AddToCartButton from "@/features/cart/ui/add-to-cart-button";
 
 export default async function Home() {
   const products = await getProducts({}, { inStockOnly: true });
@@ -12,7 +13,7 @@ export default async function Home() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {products.map((product) => (
-            <ProductCard product={product} key={product.id} />
+            <ProductCard product={product} key={product.id} action={<AddToCartButton productId={product.id} stock={product.stock_quantity} />} />
           ))}
         </div>
       )}
