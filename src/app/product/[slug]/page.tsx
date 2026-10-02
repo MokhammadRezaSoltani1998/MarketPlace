@@ -1,6 +1,7 @@
 import { getProductBySlug } from "@/entities/product";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ProductImage from "@/entities/product/ui/product-image";
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -19,6 +20,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         ← Назад в каталог
       </Link>
       <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+        <ProductImage id={product.id} title={product.title} className="mb-6 h-80 w-full rounded-xl" />
         <h1 className="text-3xl font-bold text-slate-900 mb-4">
           {product.title}
         </h1>
