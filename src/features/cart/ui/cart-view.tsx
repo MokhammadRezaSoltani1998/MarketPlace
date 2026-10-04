@@ -78,7 +78,7 @@ export default function CartView({ userId, checkout = false }: { userId: string;
         <label>Телефон<input required maxLength={30} type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} className="block w-full rounded border p-2" /></label>
         <label>Адрес доставки<textarea required maxLength={500} value={address} onChange={(event) => setAddress(event.target.value)} className="block w-full rounded border p-2" /></label>
         <button type="submit" disabled={busy || unavailable} className="rounded bg-black px-4 py-2 text-white disabled:opacity-50">Создать заказ</button>
-        <p className="text-sm text-slate-600">Заказ резервирует товары на 15 минут. Оплата пока не подключена.</p>
+        <p className="text-sm text-slate-600">Заказ резервирует товары на 15 минут. Оплатите его на странице заказа.</p>
       </form> : <Link href="/checkout" className="mt-5 inline-block rounded bg-black px-4 py-2 text-white">Оформить заказ</Link>}
     </>}
     {error && <p role="alert" className="mt-4 text-red-600">{error}</p>}
