@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Некорректный JSON" }, { status: 400 });
   }
 
-  // The current checkout form omits delivery_method until its UI is updated.
+  // Keep older checkout clients that omit delivery_method on the courier RPC.
   let legacyCourier = false;
   if (body !== null && typeof body === "object" && !Array.isArray(body)
     && !Object.hasOwn(body, "delivery_method")) {
